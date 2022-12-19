@@ -20,13 +20,22 @@ late provider providerSettings;
             fit: BoxFit.fill),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
         appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
+            leading:providerSettings.appThemeMode==ThemeMode.light?
+            InkWell(
+              onTap: ()
+                {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back, color: myThemes.lightaccentcolor,)):
+            InkWell(
+                onTap: ()
+                {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back, color: Colors.white,)),
           title: Text(args.title),
-          backgroundColor: Colors.transparent,
-          titleTextStyle :Theme.of(context).textTheme.headline5
+            titleTextStyle :Theme.of(context).textTheme.headline5
         ),
        body: SingleChildScrollView(
          child: Container(
