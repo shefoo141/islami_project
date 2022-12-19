@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:islami_project/provider/provider.dart';
 import 'package:islami_project/screens/myThemes.dart';
 import 'package:islami_project/screens/tabs/hadethTab/hadethTab.dart';
 import 'package:islami_project/screens/tabs/quranTab/quranTab.dart';
 import 'package:islami_project/screens/tabs/radioTab/radiotab.dart';
 import 'package:islami_project/screens/tabs/sebhaTab/sebhaTab.dart';
+import 'package:islami_project/screens/tabs/settingsTab/settingScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class homeScreen extends StatefulWidget {
   static String routename = 'Home';
@@ -14,34 +18,28 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   int selectedIndex = 0;
-  List<Widget> tabs = [quranTab(), hadethTab(), sebhaTab(),radioTab(),];
-
+  List<Widget> tabs = [quranTab(), hadethTab(), sebhaTab(),radioTab(), settingScreen()];
+  late provider providerSettings;
   @override
   Widget build(BuildContext context) {
+    providerSettings = Provider.of(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/default_bg.png'),
+            image: AssetImage(providerSettings.appThemeMode==ThemeMode.light ?
+            'assets/images/default_bg.png':'assets/images/dark_bg.png'),
             fit: BoxFit.fill),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          title: Text('Islami'),
-          backgroundColor: Colors.transparent,
-          titleTextStyle: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: myThemes.lightaccentcolor),
+          title:Text( AppLocalizations.of(context)!.islami),
         ),
         bottomNavigationBar: Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: myThemes.lightprimarycolor),
+          data: providerSettings.appThemeMode== ThemeMode.light ?Theme.of(context)
+              .copyWith(canvasColor: myThemes.lightprimarycolor) : Theme.of(context)
+              .copyWith(canvasColor: myThemes.darkprimarycolor),
           child: BottomNavigationBar(
-            selectedItemColor: myThemes.lightaccentcolor,
-            showUnselectedLabels: true,
             onTap: (Clickedtab) {
               selectedIndex = Clickedtab;
               setState(() {});
@@ -60,6 +58,9 @@ class _homeScreenState extends State<homeScreen> {
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage('assets/images/icon_radio.png')),
                   label: 'Radio'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings'),
             ],
           ),
         ),

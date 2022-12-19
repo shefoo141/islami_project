@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_project/provider/provider.dart';
 import 'package:islami_project/screens/myThemes.dart';
 import 'package:islami_project/screens/tabs/hadethTab/hadethNumberItem.dart';
 import 'package:islami_project/screens/tabs/hadethTab/hadethTab.dart';
 import 'package:islami_project/screens/tabs/hadethTab/hadeth_data_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class hadethTab extends StatefulWidget {
   @override
@@ -12,9 +15,10 @@ class hadethTab extends StatefulWidget {
 
 class _hadethTabState extends State<hadethTab> {
   List<hadethDataModel_2> hadethModel= [];
-
+  late provider providerSettings;
   @override
   Widget build(BuildContext context) {
+    providerSettings =Provider.of(context);
    if(hadethModel.isEmpty)
    {
      readAhadeth();
@@ -23,7 +27,7 @@ class _hadethTabState extends State<hadethTab> {
         children: [
         Expanded(flex:30,child: Image.asset('assets/images/hadeth_logo.png')),
     Divider(color: myThemes.lightprimarycolor, thickness: 3,),
-    Text('Ahadeth', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: myThemes.lightaccentcolor),),
+    Text(AppLocalizations.of(context)!.ahadeth, style: Theme.of(context).textTheme.bodyText1,),
     Divider(color: myThemes.lightprimarycolor, thickness: 3,),
     Expanded(flex:70,
         child: ListView.builder(

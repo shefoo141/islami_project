@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islami_project/provider/provider.dart';
 import 'package:islami_project/screens/myThemes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class sebhaTab extends StatefulWidget {
   @override
@@ -11,8 +14,10 @@ class _sebhaTabState extends State<sebhaTab> {
   int counter2 = 0;
   double angle = 0;
   List<String> tasbehat = ['سبحان الله ', ' الحمد لله', 'الله اكبر'];
+  late provider providerSettings;
   @override
   Widget build(BuildContext context) {
+    providerSettings =Provider.of(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -30,27 +35,23 @@ class _sebhaTabState extends State<sebhaTab> {
                       left: width * 0.45,
                       child: Image(
                           image:
-                              AssetImage('assets/images/head_sebha_logo.png'))),
+                              AssetImage(providerSettings.appThemeMode ==ThemeMode.light ?
+                              'assets/images/head_sebha_logo.png' :'assets/images/head_sebha_dark.png' ))),
                   Positioned(
                       top: height * 0.1,
                       child: Transform.rotate(
                           angle: angle,
                           child: Image(
-                              image: AssetImage(
-                                  'assets/images/body_sebha_logo.png')))),
+                              image: AssetImage(providerSettings.appThemeMode ==ThemeMode.light ?
+                                  'assets/images/body_sebha_logo.png' :'assets/images/body_sebha_dark.png' )))),
                 ],
               ),
             ),
             SizedBox(
               height: 15,
             ),
-            Text(
-              'Tasbehat Times',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: myThemes.lightaccentcolor),
-            ),
+            Text(AppLocalizations.of(context)!.tasbehattimes,
+              style: Theme.of(context).textTheme.headline4),
             SizedBox(
               height: 15,
             ),
@@ -58,7 +59,8 @@ class _sebhaTabState extends State<sebhaTab> {
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: myThemes.lightprimarycolor.withOpacity(0.6),
+                color: providerSettings.appThemeMode== ThemeMode.light ?
+                myThemes.lightprimarycolor.withOpacity(0.6) : myThemes.darkprimarycolor.withOpacity(0.6),
               ),
               child: Text(
                 '$counter',
@@ -82,7 +84,8 @@ class _sebhaTabState extends State<sebhaTab> {
                       fontSize: 20),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: myThemes.lightprimarycolor,
+                  primary: providerSettings.appThemeMode == ThemeMode.light ? myThemes.lightprimarycolor
+                  : myThemes.darkaccentcolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

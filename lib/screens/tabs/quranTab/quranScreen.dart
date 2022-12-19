@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_project/provider/provider.dart';
 import 'package:islami_project/screens/myThemes.dart';
 import 'package:islami_project/screens/tabs/quranTab/suraNameItem.dart';
+import 'package:provider/provider.dart';
 
 class quranScreen extends StatefulWidget {
 static String routname ='Quran';
@@ -11,8 +13,10 @@ static String routname ='Quran';
 
 class _quranScreenState extends State<quranScreen> {
   List<String>lines = [];
+  late provider providerSettings;
   @override
   Widget build(BuildContext context) {
+    providerSettings =Provider.of(context);
     var args =ModalRoute.of(context)!.settings.arguments as suraArgs;
     if(lines.isEmpty)
       {
@@ -21,7 +25,8 @@ class _quranScreenState extends State<quranScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/default_bg.png'),
+            image: AssetImage(providerSettings.appThemeMode==ThemeMode.light ?
+            'assets/images/default_bg.png':'assets/images/dark_bg.png'),
             fit: BoxFit.fill),
       ),
       child: Scaffold(
@@ -31,10 +36,7 @@ class _quranScreenState extends State<quranScreen> {
           centerTitle: true,
           title: Text(args.suraName),
           backgroundColor: Colors.transparent,
-          titleTextStyle: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: myThemes.lightaccentcolor),
+          titleTextStyle: Theme.of(context).textTheme.headline5
         ),
         body: ListView.builder(
             itemCount: lines.length,
@@ -42,8 +44,7 @@ class _quranScreenState extends State<quranScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text("${lines[index]} {${index+1}}" ,
-              style: TextStyle(fontSize:25 , fontWeight: FontWeight.bold ,
-                  color: myThemes.lightaccentcolor ),
+              style: Theme.of(context).textTheme.headline5,
               textDirection:TextDirection.rtl, textAlign: TextAlign.center, ),
           ],
         )),

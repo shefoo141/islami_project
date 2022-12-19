@@ -17,8 +17,7 @@ class hadethNumberItemInfo extends StatelessWidget {
           },
           child: Container(
             child: Text(hadethItem.title,textAlign: TextAlign.center
-              ,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22
-                  , color: myThemes.lightaccentcolor),),
+              ,style: Theme.of(context).textTheme.bodyText1),
           ),
         ),
         Divider(color: myThemes.lightprimarycolor,thickness: 3,),
