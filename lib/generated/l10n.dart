@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Tasbehat Times`
+  /// `Tasbehat Times `
   String get tasbehattimes {
     return Intl.message(
-      'Tasbehat Times',
+      'Tasbehat Times ',
       name: 'tasbehattimes',
       desc: '',
       args: [],

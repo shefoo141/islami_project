@@ -1,11 +1,11 @@
 {
-    "ahadeth":"Ahadeth",
-    "suraName":"SuraName",
-    "islami" : "Islami",
-    "tasbehattimes" : "Tasbehat Times",
-    "quran":"Quran",
-    "hadeth":"Hadeth",
-    "sebha":"Sebha",
-    "radio": "Radio",
-    "setting":"Settings"
+        "ahadeth" : "Ahadeth",
+        "suraName" :"SuraName" ,
+        "islami": "Islami",
+        "tasbehattimes" :"Tasbehat Times ",
+        "quran":"Quran" ,
+        "hadeth":"Hadeth" ,
+        "sebha":"Sebha" ,
+        "radio": "Radio",
+        "setting":"Settings"
 }

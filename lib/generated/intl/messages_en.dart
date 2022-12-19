@@ -30,6 +30,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "sebha": MessageLookupByLibrary.simpleMessage("Sebha"),
         "setting": MessageLookupByLibrary.simpleMessage("Settings"),
         "suraName": MessageLookupByLibrary.simpleMessage("SuraName"),
-        "tasbehattimes": MessageLookupByLibrary.simpleMessage("Tasbehat Times")
+        "tasbehattimes": MessageLookupByLibrary.simpleMessage("Tasbehat Times ")
       };
 }

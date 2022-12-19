@@ -1,11 +1,11 @@
 {
-    "ahadeth" : "احاديث",
-    "suraName" :"اسم السورة" ,
-    "islami": "اسلامي",
-    "tasbehattimes" : "عدد التسبيحات ",
-    "quran":"القرأن" ,
-    "hadeth":"الحديث" ,
-    "sebha":"السبحه" ,
-    "radio": "الراديو",
-    "setting":"الاعدادات"
+        "ahadeth" : "احاديث",
+        "suraName" :"اسم السورة" ,
+        "islami": "اسلامي",
+        "tasbehattimes" : "عدد التسبيحات ",
+        "quran":"القرأن" ,
+        "hadeth":"الحديث" ,
+        "sebha":"السبحه" ,
+        "radio": "الراديو",
+        "setting":"الاعدادات"
 }
